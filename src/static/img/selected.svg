@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="32px" height="32px" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg"
+>
+  <title>编组 4</title>
+  <g id="素材库" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+    <g id="图标-及同步优化点" transform="translate(-18.000000, -86.000000)" fill-rule="nonzero">
+      <g id="编组-5" transform="translate(18.000000, 86.000000)">
+        <path
+          d="M2.75206106,-2.20268248e-13 L32.0000611,-2.20268248e-13 L32.0000611,28.408 C28.6480969,30.7474152 24.6586674,32.0012459 20.5710611,32 C9.21006106,32 2.09610107e-13,22.449 2.09610107e-13,10.667 C-0.00876153961,6.9346419 0.938686984,3.26224605 2.75206106,-2.20268248e-13 Z"
+          id="路径_2049" fill="#3989FA"
+          transform="translate(16.000031, 16.000000) scale(-1, 1) translate(-16.000031, -16.000000) "></path>
+        <polygon id="路径_2050" fill="#FFFFFF"
+                 points="21.866 10 14.4 17.543 10.134 13.232 8 15.388 14.4 21.852 24 12.152"></polygon>
+      </g>
+    </g>
+  </g>
+</svg>
