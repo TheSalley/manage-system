@@ -24,6 +24,8 @@ export const use_user_store = defineStore(
       group: "",
     });
 
+    const permission_routes = ref([]);
+
     let change_user_info = (name, value) => {
       user_info.value[name] = value;
     };
@@ -47,6 +49,7 @@ export const use_user_store = defineStore(
           change_user_info(name, data[name]);
         } else if (["access"].includes(name)) {
           const res_routes = await generateRoutes(data.access);
+          permission_routes.value = res_routes;
           console.log(res_routes);
           console.log(router);
           res_routes.forEach((item) => {
@@ -71,6 +74,7 @@ export const use_user_store = defineStore(
 
     return {
       user_info,
+      permission_routes,
       change_user_info,
       store_user_token,
       get_user_info,
