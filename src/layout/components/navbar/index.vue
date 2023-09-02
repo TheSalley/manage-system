@@ -1,5 +1,12 @@
 <template>
   <div class="navbar">
+    <hamburger
+      :is-active="sidebar.opened"
+      id="hamburger-container"
+      class="hamburger-container"
+      @toggleClick="toggleSideBar"
+    />
+    <breadcrumb />
     <div class="right-menu">
       <el-dropdown
         trigger="hover"
@@ -14,9 +21,7 @@
         <template #dropdown>
           <el-dropdown-menu>
             <el-dropdown-item command="gome">我的</el-dropdown-item>
-            <el-dropdown-item divided command="logout"
-              >退出</el-dropdown-item
-            >
+            <el-dropdown-item divided command="logout">退出</el-dropdown-item>
           </el-dropdown-menu>
         </template>
       </el-dropdown>
@@ -24,19 +29,48 @@
   </div>
 </template>
 <script setup lang="ts">
-import { use_user_store } from "@/store/user";
 import { storeToRefs } from "pinia";
+import { use_user_store } from "@/store/user";
+import { use_setting_store } from "@/store/setting";
+import hamburger from "./components/hamburger.vue";
+import breadcrumb from "./components/breadcrumb.vue";
 
 const { user_info } = storeToRefs(use_user_store());
+const { sidebar } = storeToRefs(use_setting_store());
 console.log(user_info.value);
+
+const toggleSideBar = () => {};
 </script>
-<style lang="less" scoped>
+<style lang="scss" scoped>
 .navbar {
   height: 50px;
   overflow: hidden;
   position: relative;
   background: #fff;
   box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
+
+  .hamburger-container {
+    line-height: 46px;
+    height: 100%;
+    float: left;
+    cursor: pointer;
+    transition: background 0.3s;
+    -webkit-tap-highlight-color: transparent;
+
+    &:hover {
+      background: rgba(0, 0, 0, 0.025);
+    }
+  }
+
+  .breadcrumb-container {
+    float: left;
+  }
+
+  .errLog-container {
+    display: inline-block;
+    vertical-align: top;
+  }
+
   .right-menu {
     float: right;
     height: 100%;

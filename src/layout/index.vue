@@ -13,6 +13,6 @@
 import navbar from "./components/navbar/index.vue";
 import sidebar from "./components/sidebar/index.vue";
 </script>
-<style lang="less" scoped>
+<style lang="scss" scoped>
 
 </style>

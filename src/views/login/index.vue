@@ -129,15 +129,15 @@ onMounted(async () => {
   await updatecode();
 });
 </script>
-<style lang="less" scoped>
-@bg: #2d3a4b;
-@dark_gray: #889aa4;
-@light_gray: #eee;
+<style lang="scss" scoped>
+$bg: #2d3a4b;
+$dark_gray: #889aa4;
+$light_gray: #eee;
 
 .login-container {
   min-height: 100%;
   width: 100%;
-  background-color: @bg;
+  background-color: $bg;
   overflow: hidden;
 
   .login-form {
@@ -163,7 +163,7 @@ onMounted(async () => {
 
   .svg-container {
     padding: 6px 5px 6px 15px;
-    color: @dark_gray;
+    color: $dark_gray;
     vertical-align: middle;
     width: 30px;
     display: inline-block;
@@ -174,7 +174,7 @@ onMounted(async () => {
 
     .title {
       font-size: 26px;
-      color: @light_gray;
+      color: $light_gray;
       margin: 0px auto 40px auto;
       text-align: center;
       font-weight: bold;
@@ -186,7 +186,7 @@ onMounted(async () => {
     right: 10px;
     top: 7px;
     font-size: 16px;
-    color: @dark_gray;
+    color: $dark_gray;
     cursor: pointer;
     user-select: none;
   }

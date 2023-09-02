@@ -36,7 +36,7 @@ export default defineConfig({
   },
   css: {
     preprocessorOptions: {
-      less: {
+      scss: {
         chartset: false,
       },
     },
