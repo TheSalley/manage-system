@@ -19,13 +19,12 @@
         </el-menu-item>
       </app_link>
     </template>
-    <el-menu-item
+    <el-sub-menu
       v-else
       ref="subMenu"
       :index="resolvePath(item.path)"
-      popper-append-to-body
     >
-      <template slot="title">
+      <template #title>
         <item_com
           v-if="item.meta"
           :icon="item.meta && item.meta.icon"
@@ -41,7 +40,7 @@
         :base-path="resolvePath(child.path)"
         class="nest-menu"
       />
-    </el-menu-item>
+    </el-sub-menu>
   </div>
 </template>
 <script lang="ts">
