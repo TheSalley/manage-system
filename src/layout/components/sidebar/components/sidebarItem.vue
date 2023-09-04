@@ -1,42 +1,60 @@
 <template>
-  <div  class="menu-wrapper">
-    <template v-if="true">
-      <el-menu-item>{{ item.meta.title }}</el-menu-item>
-
-    </template>
-
-  </div>
-  <div class="menu-wrapper">
-    <template>
-        <el-menu-item>
-          <div>
-            <!-- <i>{{ item.meta.icon }}</i> -->
-            <span>{{ item }}</span>
-          </div>
+  <div v-if="!item.hidden" class="menu-wrapper">
+    <template
+      v-if="
+        hasOneShowingChild(item.children, item) &&
+        (!onlyOneChild.children || onlyOneChild.noShowingChildren) &&
+        !item.alwaysShow
+      "
+    >
+      <app_link v-if="onlyOneChild.meta" :to="resolvePath(onlyOneChild.name)">
+        <el-menu-item
+          :index="resolvePath(onlyOneChild.path)"
+          :class="{ 'submenu-title-noDropdown': !isNest }"
+        >
+          <item_com
+            :icon="onlyOneChild.meta.icon || (item.meta && item.meta.icon)"
+            :title="onlyOneChild.meta.title"
+          />
         </el-menu-item>
+      </app_link>
     </template>
-    <!-- <el-submenu v-else>
+    <el-menu-item
+      v-else
+      ref="subMenu"
+      :index="resolvePath(item.path)"
+      popper-append-to-body
+    >
       <template slot="title">
-        <div>
-          <i>{{ item.meta.icon }}</i>
-          <span>{{ item.meta.title }}</span>
-        </div>
-        <sidebar-item
-          v-for="child in item.children"
-          :key="child.path"
-          :is-nest="true"
-          :item="child"
-          :base-path="resolvePath(child.path)"
-          class="nest-menu"
+        <item_com
+          v-if="item.meta"
+          :icon="item.meta && item.meta.icon"
+          :title="item.meta.title"
         />
       </template>
-    </el-submenu> -->
+
+      <sidebar_item
+        v-for="child in item.children"
+        :key="child.path"
+        :is-nest="true"
+        :item="child"
+        :base-path="resolvePath(child.path)"
+        class="nest-menu"
+      />
+    </el-menu-item>
   </div>
 </template>
+<script lang="ts">
+export default {
+  name: "sidebar_item",
+};
+</script>
 <script setup lang="ts">
 import { ref } from "vue";
-import path from "path";
+import path from "path-browserify";
 import { isExternal } from "@/utils/validate";
+import app_link from "./link.vue";
+import item_com from "./item.vue";
 
 const props = defineProps({
   item: {
@@ -63,15 +81,15 @@ const hasOneShowingChild = (children = [], parent) => {
       onlyOneChild.value = item;
       return true;
     }
-    if (showingChildren.length === 1) {
-      return true;
-    }
-    if (showingChildren.length === 0) {
-      onlyOneChild.value = { ...parent, path: "", noShowingChildren: true };
-      return true;
-    }
-    return false;
   });
+  if (showingChildren.length === 1) {
+    return true;
+  }
+  if (showingChildren.length === 0) {
+    onlyOneChild.value = { ...parent, path: "", noShowingChildren: true };
+    return true;
+  }
+  return false;
 };
 
 const resolvePath = (routePath) => {

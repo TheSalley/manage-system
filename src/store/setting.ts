@@ -1,7 +1,7 @@
 import { defineStore } from "pinia";
 import { ref } from "vue";
 import Cookies from "js-cookie";
-import variables from "@/styles/element-variables.scss";
+import variables from "@/styles/element-variables.module.scss";
 
 export const use_setting_store = defineStore(
   "setting_store",

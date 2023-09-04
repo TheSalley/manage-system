@@ -44,11 +44,12 @@ export default defineConfig({
   plugins: [
     Vue(),
     AutoImport({
-      imports: ["vue"],
+      imports: ["vue", "pinia", "vue-router"],
       resolvers: [
         ElementPlusResolver(),
         IconsResolver({
-          prefix: "Icon",
+          prefix: "i",
+          enabledCollections: ["ep"],
         }),
       ],
     }),
@@ -56,11 +57,13 @@ export default defineConfig({
       resolvers: [
         ElementPlusResolver(),
         IconsResolver({
+          prefix: "i",
           enabledCollections: ["ep"],
         }),
       ],
     }),
     Icons({
+      compiler: "vue3",
       autoInstall: true,
     }),
     Inspect(),
