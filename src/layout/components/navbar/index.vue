@@ -4,9 +4,9 @@
       :is-active="sidebar.opened"
       id="hamburger-container"
       class="hamburger-container"
-      @toggleClick="toggleSideBar"
+      @toggleClick="toggle_siderbar"
     />
-    <breadcrumb />
+    <breadcrumb id="breadcrumb-container" class="breadcrumb-container" />
     <div class="right-menu">
       <el-dropdown
         trigger="hover"
@@ -37,9 +37,8 @@ import breadcrumb from "./components/breadcrumb.vue";
 
 const { user_info } = storeToRefs(use_user_store());
 const { sidebar } = storeToRefs(use_setting_store());
+const { toggle_siderbar } = use_setting_store();
 console.log(user_info.value);
-
-const toggleSideBar = () => {};
 </script>
 <style lang="scss" scoped>
 .navbar {

@@ -13,11 +13,52 @@
   </el-breadcrumb>
 </template>
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref, watchEffect, onBeforeMount } from "vue";
+import { useRoute, useRouter } from "vue-router";
 
-const levelList = ref("");
+const route = useRoute();
+const router = useRouter();
+const levelList = ref([]);
 
-const handleLink = () => {};
+const handleLink = (item) => {
+  const { redirect, path } = item;
+  if (redirect) {
+    router.push(redirect)
+    return
+  }
+  // router.push(pathCompile(path))
+  console.log("*****", path)
+};
+
+const getBreadcrumb = () => {
+  let matched = route.matched.filter((item) => item.meta && item.meta.title);
+  const first = matched[0];
+  if (!isDashboard(first)) {
+    matched = [{ path: "/dashboard", meta: { title: "系统首页" } }].concat(
+      matched
+    );
+  }
+  levelList.value = matched.filter(
+    (item) => item.meta && item.meta.title && item.meta.breadcrumb !== false
+  );
+};
+
+const isDashboard = (route) => {
+  const name = route && route.name;
+  if (!name) {
+    return false;
+  }
+  return name.trim().toLocaleLowerCase() === "Dashboard".toLocaleLowerCase();
+};
+
+watchEffect(() => {
+  if (route.path.startsWith("/redirect")) return;
+  getBreadcrumb();
+});
+
+onBeforeMount(() => {
+  getBreadcrumb();
+});
 </script>
 <style lang="scss" scoped>
 .app-breadcrumb.el-breadcrumb {

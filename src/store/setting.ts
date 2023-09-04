@@ -29,10 +29,21 @@ export const use_setting_store = defineStore(
     const device = ref("desktop");
     const size = ref(Cookies.get("size") || "medium");
 
+    const toggle_siderbar = () => {
+      sidebar.value.opened = !sidebar.value.opened;
+      sidebar.value.withoutAnimation = false;
+      if (sidebar.value.opened) {
+        Cookies.set("sidebarStatus", "1");
+      } else {
+        Cookies.set("sidebarStatus", "0");
+      }
+    };
+
     return {
       theme,
       default_setting,
       sidebar,
+      toggle_siderbar,
       device,
       size,
     };

@@ -68,7 +68,7 @@ export default defineConfig({
   server: {
     proxy: {
       "/api": {
-        target: "https://api.iweiqidian.com/index.php",
+        target: "https://api.iweiqidian.com",
         changeOrigin: true,
         secure: false,
         rewrite: (path) => path.replace(/^\/api/, ""),
