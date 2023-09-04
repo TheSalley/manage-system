@@ -13,6 +13,7 @@
       <div :class="{ 'fixed-header': default_setting.fixedHeader }">
         <navbar_com />
       </div>
+      <app_main_com />
     </div>
   </div>
 </template>
@@ -21,6 +22,7 @@ import { computed } from "vue";
 import { storeToRefs } from "pinia";
 import navbar_com from "./components/navbar/index.vue";
 import sidebar_com from "./components/sidebar/index.vue";
+import app_main_com from "./components/app_main/index.vue"
 import { use_setting_store } from "@/store/setting";
 
 const { default_setting, sidebar, device } = storeToRefs(use_setting_store());
