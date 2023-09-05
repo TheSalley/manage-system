@@ -12,5 +12,7 @@ defineProps({
 
 const icon_list = ref({
   list: IEpList,
+  user: IEpUser,
+  lock: IEpLock,
 });
 </script>

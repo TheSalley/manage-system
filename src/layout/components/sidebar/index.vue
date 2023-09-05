@@ -9,6 +9,7 @@
         :unique-opened="false"
         :active-text-color="variables.menuActiveText"
         mode="vertical"
+        :router="true"
       >
         <sidebarItem
           v-for="r in permission_routes"

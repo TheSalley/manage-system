@@ -6,7 +6,7 @@ export const generateRoutes = (data) => {
         item.children.map((child) => {
           if (child.component) {
             child.component = () =>
-              import(`@/views/${child.component}/index.vue`);
+              import(`@/views/${child.component}.vue`);
           } else {
             child.component = () => import("@/layout/index.vue");
           }
